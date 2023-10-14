@@ -7,7 +7,7 @@ on:
 jobs:
 
   build:
-
+    environment: dev
     runs-on: ubuntu-latest
 
     steps:
@@ -21,7 +21,7 @@ jobs:
 
     - uses: actions/checkout@v3
     - name: Login registry
-      run: docker login -u ${{ secrets.do_token }} -p ${{ secrets.do_token }} registry.digitalocean.com
+      run: docker login -u ${{secrets.do_token}} -p ${{secrets.do_token}} registry.digitalocean.com
 
     - uses: actions/checkout@v3
     - name: Push docker image
