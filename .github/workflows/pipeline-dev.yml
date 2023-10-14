@@ -1,0 +1,32 @@
+name: Docker pipeline
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile -t backend-service:latest
+
+    - uses: actions/checkout@v3
+    - name: Tagging docker image
+      run: docker tag backend-service:latest registry.digitalocean.com/perrier-dev/backend-service:latest
+
+    - uses: actions/checkout@v3
+    - name: Login registry
+      run: docker login -u ${{ secrets.do_token }} -p ${{ secrets.do_token }} registry.digitalocean.com
+
+    - uses: actions/checkout@v3
+    - name: Push docker image
+      run: docker tag backend-service:latest registry.digitalocean.com/perrier-dev/backend-service:latest
+
+    - run: docker logout 
+
+
