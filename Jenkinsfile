@@ -4,11 +4,15 @@ pipeline {
 
     stages{
         stage('Build')  {
-            sh 'echo build application'
-            sh 'done building'
+            steps {
+                sh 'echo build application'
+                sh 'done building'
+            }
         }
         stage('Deploy') {
-            sh 'echo deploying ur shit'
+            steps {
+                sh 'echo deploying ur shit'
+            }
         }
     }
 
