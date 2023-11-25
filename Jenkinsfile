@@ -6,7 +6,7 @@ pipeline {
         stage('Build')  {
             steps {
                 sh 'echo "build application"'
-                sh 'done "building"'
+                sh 'echo "done building"'
             }
         }
         stage('Deploy') {
